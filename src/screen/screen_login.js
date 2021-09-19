@@ -15,7 +15,7 @@ const Container = styled.div`
 
 const PepeImage = styled.div`
     background-image: url(${pepe});
-    width: 100%;
+    width: 88%;
     height: 60%;
     margin: 6%
     `
