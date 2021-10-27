@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';// 스타일드 컴포넌트 패키지를 사용
+import axios from 'axios';
 import pepe from "../images/pepe.jpg"
 
 
@@ -49,7 +50,7 @@ const Button = styled.div`
 `
 
 function ScreenLogin() {
-    const [account, setAccount] = useState({
+    const [account, setAccount] = useState({// account의 초기 설정을 다음과 같은 object로 해주었음
         id: "",
         password: "",
     });
@@ -61,8 +62,38 @@ function ScreenLogin() {
         });
     };
     const onButtonPressed = (e) => {
-        alert("login operation");
-    }
+        console.log('clicked login');
+        console.log('ID : ', account.id);
+        console.log('PW : ', account.password);
+
+        axios.post('/user_inform/onLogin', null, {
+            params: {
+                'user_id': account.id,
+                'user_pw': account.password
+            }
+        })
+        .then(res => {
+            console.log(res);
+            console.log('res.data.userId :: ', res.data.userId);
+            console.log('res.data.message :: ', res.data.message);
+            if(res.data.userId === undefined) {
+                // 아이디가 데이터베이스에 존재하지 않는 경우
+                console.log('====================', res.data.message);
+                alert('입력하신 아이디가 존재하지 않습니다');
+            } else if(res.data.userId === null) {
+                // 아이디는 존재하지만 비밀번호가 일치하지 않을 경우
+                console.log('====================', '입력하신 비밀번호가 일치하지 않습니다.');
+                alert('입력하신 비밀번호가 일치하지 않습니다.');
+            } else if(res.data.userId === account.id) {
+                // 아이디, 비밀번호가 모두 일치하는 경우. userId -> userId, msg -> undefined
+                console.log('====================', '로그인 성공');
+                sessionStorage.setItem('user_id', account.id);
+            }
+            // 작업이 완료되면 새로고침
+            document.location.href = '/';
+        })
+        .catch();
+    };
 
     //<img src="./images/pepe.jpg" />
     return (
