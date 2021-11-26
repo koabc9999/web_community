@@ -6,8 +6,8 @@ import ComponentSignUp from '../components/component_signUp.js';
 
 
 function ScreenLogin() {
-    
 
+    
     //<img src="./images/pepe.jpg" />
     return (
         <div>
