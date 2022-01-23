@@ -67,18 +67,19 @@ function ComponentLogin() {
             [e.target.name]: e.target.value,
         });
     };
-    const onButtonPressed = (e) => {
+    
+    const onButtonPressed = (e) => {// 로그인 버튼이 눌렸을 때 서버에게 포스트 리퀘스트를 보냄
         console.log('clicked login');
         console.log('ID : ', account.id);
         console.log('PW : ', account.password);
 
-        axios.post('/user_inform/onLogin', null, {
-            params: {
+        axios.post('/user_inform/onLogin', null, {// 해당 url로 post 리퀘스트를 한다
+            params: {// 리퀘스트에 같이 보내질 데이터
                 'user_id': account.id,
                 'user_pw': account.password
             }
         })
-        .then(res => {
+        .then(res => {// post 리퀘스트의 결과로 서버가 res를 돌려준다
             console.log(res);
             console.log('res.data.userId :: ', res.data.userId);
             console.log('res.data.message :: ', res.data.message);
