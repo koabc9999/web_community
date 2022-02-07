@@ -9,7 +9,7 @@ const Container = styled.div`
     margin: 2% 32%;
     padding: 20px;
     width: 30;
-    height: 720px;
+    height: 740px;
     border-radius: 10px;
     background: white;
 `;
@@ -17,7 +17,7 @@ const Container = styled.div`
 const CatImage = styled.div`
     background-image: url(${cat});
     width: 88%;
-    height:50%;
+    height: 48%;
     margin: 0.4% 6% 3%;
 `;
 
@@ -25,6 +25,19 @@ const Input = styled.input`
     position: relative;
     overflow: hidden;
     width: 100%;
+    height: 40px;
+    margin: 0 0 8px;
+    padding: 5px 39px 5px 11px;
+    border: solid 1px #dadada;
+    background: #fff;
+    box-sizing: border-box;
+`;
+
+// 아이디 중복 확인 버튼을 위해서 가로 길이가 좀 더 짧은 입력창
+const IDInput = styled.input`
+    position: relative;
+    overflow: hidden;
+    width: 75%;
     height: 40px;
     margin: 0 0 8px;
     padding: 5px 39px 5px 11px;
@@ -47,6 +60,17 @@ const Button = styled.div`
     border: none;
     border-radius: 0;
     background-color: mediumpurple;
+`;
+
+const IDButton = styled.div`
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 40px;
+    background-color: mediumpurple;
+    border-radius: 0;
+    color: #fff;
+    width: 15%;
+    text-align: center;
 `;
 
 const StyledText = styled.text`
@@ -97,6 +121,7 @@ function ComponentSignUp() {
         <Container>
             <CatImage></CatImage>
             <StyledText>이름</StyledText>
+            <br/>
             <Input
                 id="name"
                 name="name"
@@ -104,15 +129,19 @@ function ComponentSignUp() {
                 placeholder="이름"
                 onChange={onChangeAccount}
             />
+            <br/>
             <StyledText>아이디</StyledText>
-            <Input
+            <br/>
+            <IDInput
                 id="id"
                 name="id"
                 type="text"
                 placeholder="아이디"
                 onChange={onChangeAccount}
             />
+            <IDButton>중복확인</IDButton>
             <StyledText>비밀번호</StyledText>
+            <br/>
             <Input
                 id="password"
                 name="password"
@@ -120,7 +149,9 @@ function ComponentSignUp() {
                 placeholder="비밀번호"
                 onChange={onChangeAccount}
             />
+            <br/>
             <StyledText>비밀번호 확인</StyledText>
+            <br/>
             <Input
                 id="pwcheck"
                 name="pwcheck"
