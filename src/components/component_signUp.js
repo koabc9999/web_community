@@ -113,6 +113,13 @@ function ComponentSignUp() {
             })
             .then(res => {// 서버에서 온 응답을 res에 넣고 이후 코드를 실행해줌
                 console.log(res);
+                if(res.data === "error") {
+                    alert("이미 존재하는 아이디 입니다!");
+                }
+                else if(res.data === "signed up") {// 잘 회원가입 된 경우. 메인화면으로 새로고침 해줌
+                    alert('회원가입 완료 되었습니다!');
+                    document.location.href = '/';
+                }
             });
         }
     }
